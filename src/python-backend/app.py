@@ -1,7 +1,7 @@
 from flask import Flask, jsonify
 from settings import Config
 import json
-
+from flask import request
 
 def parse_gemini_response(response_str):
     # Remove crases e 'json' do início
@@ -56,6 +56,12 @@ Este é um e-mail automático. Não responda a esta mensagem.
 """
         )),
     )
+
+@app.route("/", methods=["POST"])
+def receive_alert():
+    data = request.get_json()
+    print("Recebido do Java:", data)
+    return jsonify(data), 200
 
 if __name__ == "__main__":
     app.run(port=5000)

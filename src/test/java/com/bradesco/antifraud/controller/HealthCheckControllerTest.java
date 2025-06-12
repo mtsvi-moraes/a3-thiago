@@ -20,4 +20,5 @@ public class HealthCheckControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string("the application is ok"));
     }
+    
 }
