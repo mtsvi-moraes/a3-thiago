@@ -21,6 +21,27 @@ services:
     depends_on:
       - database_postgres
 
+  python-backend:
+    build:
+      context: ./src/python-backend
+    env_file:
+      - ./src/python-backend/.env
+    ports:
+      - "5000:5000"
+    depends_on:
+      - database_postgres
+
+  java-backend:
+    build:
+      context: .
+    env_file:
+      - .env
+    ports:
+      - "8080:8080"
+    depends_on:
+      - database_postgres
+      - python-backend
+
 volumes:
   postgres_data:
   pgadmin_data:
